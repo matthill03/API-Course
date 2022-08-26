@@ -63,7 +63,7 @@ namespace NZWalks.API.Controllers
                 WalkDifficultyId = addWalkRequest.WalkDifficultyId
             };
 
-            // Pass domain object to repository to persist this
+            // Pass domain object to repository to add to database
             walkDomain = await walkRepository.AddAsync(walkDomain);
 
             // Convert the domain object back to DTO
