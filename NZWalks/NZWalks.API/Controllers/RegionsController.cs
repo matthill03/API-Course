@@ -68,10 +68,12 @@ namespace NZWalks.API.Controllers
         public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
         {
             // Validate the request 
-            if(!ValidateAddRegionAsync(addRegionRequest))
-            {
-                return BadRequest(ModelState);
-            }
+
+            // Old validation:
+            //if(!ValidateAddRegionAsync(addRegionRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             // Request(DTO) to Domain model
             var region = new Models.Domain.Region()
@@ -136,10 +138,12 @@ namespace NZWalks.API.Controllers
         public async Task<IActionResult> UpdateRegionAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateRegionRequest updateRegionRequest)
         {
             // Validate incoming request
-            if(!ValidateUpdateRegionAsync(updateRegionRequest))
-            {
-                return BadRequest(ModelState);
-            }
+
+            // Old validation:
+            //if(!ValidateUpdateRegionAsync(updateRegionRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             // Convert DTO to Domain model
             var region = new Models.Domain.Region()
@@ -194,7 +198,7 @@ namespace NZWalks.API.Controllers
                 ModelState.AddModelError(nameof(addRegionRequest.Code),
                     $"{nameof(addRegionRequest.Code)} cannot be null or empty or white space.");
             }
-            if (string.IsNullOrWhiteSpace(addRegionRequest.Code))
+            if (string.IsNullOrWhiteSpace(addRegionRequest.Name))
             {
                 ModelState.AddModelError(nameof(addRegionRequest.Name),
                     $"{nameof(addRegionRequest.Name)} cannot be null or empty or white space.");
